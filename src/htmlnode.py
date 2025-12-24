@@ -11,13 +11,15 @@ class HTMLNode:
     
 
     def props_to_html(self):
-        if self.props:
-            props_to_html = []
-            for key, value in self.props.items():
-                props_to_html.append(f"{key}=\"{value}\"")
+        if self.props is None:
+            return ""
+        
 
-            return " ".join(props_to_html)
-        return "''"
+        props_html = ""
+        for prop in self.props:
+            props_html += f' {prop}="{self.props[prop]}"'
+        return props_html
+      
 
     
     def __eq__(self,other_node):
